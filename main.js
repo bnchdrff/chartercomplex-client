@@ -1,11 +1,13 @@
+var server = 'chartercomplex-server.herokuapp.com';
+
 var protocol = (
   ("https:" === document.location.protocol)
   ? "https"
   : "http"
 );
 
-d3.jsonp(protocol + '://chartercomplex-server.herokuapp.com/nodes.json?callback={callback}', function (got_some_nodes) {
-  d3.jsonp(protocol + '://chartercomplex-server.herokuapp.com/edges.json?callback={callback}', function (got_some_edges) {
+d3.jsonp(protocol + '://' + server + '/nodes.json?callback={callback}', function (got_some_nodes) {
+  d3.jsonp(protocol + '://' + server + '/edges.json?callback={callback}', function (got_some_edges) {
     window.data = {
       nodes: got_some_nodes.nodes,
       links: got_some_edges.edges,
@@ -100,7 +102,7 @@ function doEverything(data) {
   function zoomed() {
     group.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
   }
-  
+
   var link = group.selectAll(".link")
         .data(force.links())
         .enter().append("svg:path")
@@ -126,10 +128,10 @@ function doEverything(data) {
             this.style.strokeWidth = '6px';
 
             document.getElementById("labels").innerHTML = d.source.name + " <br />"
-              + " is linked to <br />" 
+              + " is linked to <br />"
               + d.target.name + " <br />"
               + "Relationship: " + d.label + " <br />"
-              + "Citation: " + d.citation;
+              + (d.citation ? "Citation: " + d.citation : '');
           }
         })
 

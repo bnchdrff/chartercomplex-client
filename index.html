@@ -49,12 +49,16 @@ text {
 }
 
 #filters,
-#labels {
+.labels-container {
   border: 1px solid black;
   background: white;
   margin: 10px;
   padding: 10px;
   word-wrap: break-word;
+}
+
+.legend {
+  font-size: 80%;
 }
 
 #graph {
@@ -103,8 +107,22 @@ text.active {
 
     <div class="widgets">
       <div id="filters">
+        Filter by year:<br>
       </div>
-      <div id="labels">
+      <div class="labels-container">
+        <div class="legend">
+          <p>Click on a "node" and then hover over an "edge" (the lines between nodes) to see more information.</p>
+          <p>If an edge is green, it's a grant. If it's black, it is another type of relationship.</p>
+          <p>Node symbols:</p>
+          <dl>
+            <dt>Square</dt><dd>Organization, Company, Foundation, or Municipality</dd>
+            <dt>Circle</dt><dd>Person or Board</dd>
+            <dt>Downward-pointing triangle</dt><dd>District</dd>
+            <dt>Upward-pointing triangle</dt><dd>School or building</dd>
+            <dt>Diamond</dt><dd>University or EMO</dd>
+          </dl>
+        </div>
+        <div id="labels"></div>
       </div>
     </div>
 
